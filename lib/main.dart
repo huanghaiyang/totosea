@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show ValueNotifier;
+import 'package:graphql_flutter/graphql_flutter.dart';
 
-void main() => runApp(MyApp());
+import './graphql_flutter/link.dart' as graphql_flutter;
+import './widgets/RepositoryPage.dart' show RepositoryPage;
+
+void main() {
+  ValueNotifier<GraphQLClient> client = graphql_flutter.link();
+  runApp(MyApp(client: client));
+}
 
 class MyApp extends StatelessWidget {
+
+  const MyApp({ Key key, this.client }) : super(key: key);
+
+  final ValueNotifier<GraphQLClient> client;
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Repositories',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Explore'),
+    return GraphQLProvider(
+      client: this.client,
+      child: CacheProvider(
+          child: MaterialApp(
+            title: 'Repositories',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: MyHomePage(title: 'Repositories'),
+          )
+      )
     );
   }
 }
@@ -25,13 +43,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-        
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+        child: new RepositoryPage()
+      )
     );
   }
 }
