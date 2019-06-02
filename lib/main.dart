@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import './graphql_flutter/link.dart' as graphql_flutter;
-import './widgets/RepositoryPage.dart' show RepositoryPage;
+import './widgets/MainPage.dart' show MainPage;
 
 void main() {
   ValueNotifier<GraphQLClient> client = graphql_flutter.link();
@@ -47,11 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
-        child: new RepositoryPage()
+        child: new MainPage()
       )
     );
   }

@@ -11,7 +11,7 @@ String readRepositories = """
           resourcePath,
           projectsResourcePath,
           nameWithOwner,
-          languages(first: 10) {
+          languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
             nodes {
               color,
               id,
@@ -24,7 +24,10 @@ String readRepositories = """
             avatarUrl
           },
           forkCount,
-          isFork
+          isFork,
+          stargazers(first: 10, orderBy: {field: STARRED_AT, direction: DESC}){
+            totalCount,
+          }
         }
       }
     }
