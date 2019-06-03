@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'iconfont.dart';
+
 import '../service/query/repository.dart' show readRepositories;
 import '../utils/color.dart' show hexToColor;
+import '../github_trending/fetch.dart' show fetchTrendingRepo;
 
 class RepositoryPage extends StatefulWidget{
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './RepositoryPage.dart' show RepositoryPage;
+import './TrendingRepositoryPage.dart' show TrendingRepositoryPage;
 
 class MainPage extends StatefulWidget{
   MainPage({Key key}) : super(key: key);
@@ -14,7 +15,7 @@ class _MainPageState extends State<MainPage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     RepositoryPage(),
-    RepositoryPage(),
+    TrendingRepositoryPage(),
     RepositoryPage(),
   ];
 
