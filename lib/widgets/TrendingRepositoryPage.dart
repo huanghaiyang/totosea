@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../github_trending/fetch.dart' show fetchTrendingRepo, transformQueryResult;
-import './ShareDataWidget.dart' show ShareDataWidget;
+import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
 import './RepositoryListView.dart' show RepositoryListView;
 
 class TrendingRepositoryPage extends StatefulWidget{
@@ -35,7 +35,7 @@ class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
           title: const Text('Trending Repositories'),
         ),
         body: Center(
-          child: ShareDataWidget(
+          child: RespositoryListViewShareDataWidget(
             data: repositories,
             child: RepositoryListView(),
           ),

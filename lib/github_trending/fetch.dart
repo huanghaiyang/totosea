@@ -14,7 +14,7 @@ Future<Map<String, String>> requestTrendingRepo() async {
   HttpClientRequest request = await client.getUrl(Uri.parse(Apis['trending']));
   HttpClientResponse response = await request.close();
   String html = await response.transform(utf8.decoder).join();
-  var document = parse(html);
+  Document document = parse(html);
   List<Element> exploreContent = document.getElementsByClassName("explore-content");
   Map<String, String> repoMap = new Map();
   exploreContent.forEach((Element element){
@@ -22,7 +22,7 @@ Future<Map<String, String>> requestTrendingRepo() async {
       repoElement.children.forEach((Element repoChildElement) {
         if(repoChildElement.attributes['id'].startsWith(new RegExp("^pa-"))) {
           List<String> names = repoChildElement.getElementsByTagName("a").first.attributes['href'].split(new RegExp("/"));
-          if(names.first == "") {
+          if (names.first == "") {
             names.removeAt(0);
           }
           repoMap[names.elementAt(0)] = names.elementAt(1);
