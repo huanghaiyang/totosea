@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../service/query/repository.dart' show readRepositories;
 import './RepositoryListView.dart' show RepositoryListView;
-import './ShareDataWidget.dart' show ShareDataWidget;
+import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
 
 class RepositoryPage extends StatefulWidget{
   @override
@@ -41,7 +41,7 @@ class _RepositoryPageState extends State<RepositoryPage> {
 
               // it can be either Map or List
               List<Object> repositories = result.data['viewer']['repositories']['nodes'];
-              return ShareDataWidget(
+              return RespositoryListViewShareDataWidget(
                 data: repositories,
                 child: RepositoryListView(),
               );

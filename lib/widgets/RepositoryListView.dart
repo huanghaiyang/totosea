@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'iconfont.dart';
 
+import '../lodash/index.dart' as _;
 import '../utils/color.dart' show hexToColor;
-import './ShareDataWidget.dart' show ShareDataWidget;
+import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
 
 class RepositoryListView extends StatefulWidget{
   @override
@@ -22,13 +23,14 @@ class _RepositoryListViewState extends State<RepositoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    List<Object> repositories = ShareDataWidget.of(context).data;
+    List<Object> repositories = RespositoryListViewShareDataWidget.of(context).data;
     return ListView.builder(
         itemCount: repositories.length,
         itemBuilder: (context, index) {
           final repository = Map.from(repositories[index]);
           final languages = List.castFrom(repository['languages']['nodes']);
           Map language = languages.isEmpty? {}: languages.first;
+          List mentionableUsers = _.get(repository, 'mentionableUsers.nodes', []);
           return new Container(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -38,14 +40,16 @@ class _RepositoryListViewState extends State<RepositoryListView> {
               ),
             ),
             child: new Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
                   child: Container(
                       width: 30.0,
                       height: 30.0,
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(2.0),
+                        borderRadius: BorderRadius.circular(5.0),
                         image: DecorationImage(
                           image: NetworkImage(
                               repository['owner']['avatarUrl']
@@ -79,7 +83,8 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                         child: Align(
                           child: Row(
                             children: <Widget>[
-                              Expanded(
+                              SizedBox(
+                                width: 140,
                                 child: Row(
                                   children: <Widget>[
                                     Padding(
@@ -89,9 +94,9 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                                     Text(language['name'] != null? language['name']: "-/-")
                                   ],
                                 ),
-                                flex: 4,
                               ),
-                              Expanded(
+                              SizedBox(
+                                width: 80,
                                 child: Row(
                                   children: <Widget>[
                                     Padding(
@@ -101,9 +106,9 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                                     Text(repository['stargazers']['totalCount'].toString())
                                   ],
                                 ),
-                                flex: 4,
                               ),
-                              Expanded(
+                              SizedBox(
+                                width: 80,
                                 child: Row(
                                   children: <Widget>[
                                     Padding(
@@ -113,18 +118,10 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                                     Text(repository['forkCount'].toString())
                                   ],
                                 ),
-                                flex: 4,
                               ),
-                              Expanded(
-                                child: Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                      child: Icon(IconData(58835, fontFamily: 'MaterialIcons'), color: Colors.black45, size: 16),
-                                    ),
-                                  ],
-                                ),
-                                flex: 1,
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                child: Icon(IconData(58835, fontFamily: 'MaterialIcons'), color: Colors.black45, size: 16),
                               )
                             ],
                           ),
