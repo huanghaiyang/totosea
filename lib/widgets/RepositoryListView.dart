@@ -49,7 +49,7 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                       margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(5.0),
+                        borderRadius: BorderRadius.circular(6.0),
                         image: DecorationImage(
                           image: NetworkImage(
                               repository['owner']['avatarUrl']
@@ -63,7 +63,6 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        height: 26,
                         padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                         child: Align(
                           child: new Text(repository['owner']['login'] + ' / ' + repository['name'], style: new TextStyle(fontSize: 14, color: Colors.blueAccent)),
@@ -124,6 +123,34 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                                 child: Icon(IconData(58835, fontFamily: 'MaterialIcons'), color: Colors.black45, size: 16),
                               )
                             ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                        height: mentionableUsers.length ==0 ? 0: 25,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: mentionableUsers.length,
+                              itemBuilder: (context, mentionableUserIndex) {
+                              final mentionableUser = mentionableUsers.elementAt(mentionableUserIndex);
+                              return Container(
+                                  width: 20,
+                                  height: 20,
+                                  margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          mentionableUser['avatarUrl']
+                                      ),
+                                    ),
+                                  )
+                              );
+                            }
                           ),
                         ),
                       )

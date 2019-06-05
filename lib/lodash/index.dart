@@ -1,7 +1,7 @@
 import 'dart:core';
 
 dynamic get(Map map, String propertyChain, Object defaultValue) {
-  List<String> properties = propertyChain.split(new RegExp("."));
+  List<String> properties = propertyChain.split(new RegExp('\\.'));
   dynamic result = map;
   while(properties.length > 0) {
     String property = properties.removeAt(0);

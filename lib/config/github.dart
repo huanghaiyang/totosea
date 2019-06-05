@@ -1,5 +1,5 @@
 final Auth = const {
-  'token': "d7aa6beb758db170de2a746f8a85cf0cef805e90"
+  'token': ""
 };
 
 final ApiV4 = const {
