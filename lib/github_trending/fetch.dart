@@ -5,13 +5,15 @@ import 'package:html/parser.dart' show parse;
 import 'package:html/dom.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../graphql_flutter/link.dart' show graphQLClient;
-import '../config/github.dart' show Apis;
-import '../service/query/trendingRepository.dart' show readTrendingRepositories;
+import 'package:totosea/graphql_flutter/link.dart' show graphQLClient;
+import 'package:totosea/config/github.dart' show Apis;
+import 'package:totosea/service/query/trendingRepository.dart' show readTrendingRepositories;
 
-import '../store/RepositoryListViewStore.dart' show RepositoryListViewStore;
+import 'package:totosea/store/RepositoryListViewStore.dart' show RepositoryListViewStore;
+import 'package:totosea/store/DeveloperListViewStore.dart' show DeveloperListViewStore;
 
 final repositoryListViewStore = RepositoryListViewStore();
+final developerListViewStore = DeveloperListViewStore();
 
 Future<Map<String, String>> requestTrendingRepo() async {
   HttpClient client = new HttpClient();
@@ -84,5 +86,9 @@ void fetchIncoming() async {
       repositoryListViewStore.concatOne(queryResult.data['repository']);
     }
   });
+}
+
+void fetchIncomingDevelopers() async {
+
 }
 

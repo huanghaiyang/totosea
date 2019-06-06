@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './RepositoryPage.dart' show RepositoryPage;
+import 'package:totosea/widgets/page/RepositoryPage.dart' show RepositoryPage;
 
 class MainPage extends StatefulWidget{
   MainPage({Key key}) : super(key: key);

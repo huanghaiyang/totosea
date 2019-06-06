@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../github_trending/fetch.dart' show fetchIncoming, repositoryListViewStore;
-import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
-import './RepositoryListView.dart' show RepositoryListView;
+import 'package:totosea/github_trending/fetch.dart' show fetchIncoming, repositoryListViewStore;
+import 'package:totosea/widgets/share/RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
+import 'package:totosea/widgets/listView/RepositoryListView.dart' show RepositoryListView;
 
 class TrendingRepositoryPage extends StatefulWidget{
   @override

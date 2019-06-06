@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import './RepositoryByOwnerPage.dart' show RepositoryByOwnerPage;
-import './TrendingRepositoryPage.dart' show TrendingRepositoryPage;
-import './TabBarIndicator.dart' show TabBarIndicator, tabBarIndicatorStore;
+import 'package:totosea/widgets/page/RepositoryByOwnerPage.dart' show RepositoryByOwnerPage;
+import 'package:totosea/widgets/page/TrendingRepositoryPage.dart' show TrendingRepositoryPage;
+import 'package:totosea/widgets/page/TrendingDeveloperPage.dart' show TrendingDeveloperPage;
+import 'package:totosea/widgets/common/TabBarIndicator.dart' show TabBarIndicator, tabBarIndicatorStore;
 
 class RepositoryPage extends StatefulWidget{
 
@@ -17,7 +18,8 @@ class _RepositoryPageState extends State<RepositoryPage> with SingleTickerProvid
 
   final List<String> tabs = <String>[
     'Repositories',
-    'Trending repositories'
+    'Trending repositories',
+    'Trending developers'
   ];
 
   TabController _tabController;
@@ -49,7 +51,7 @@ class _RepositoryPageState extends State<RepositoryPage> with SingleTickerProvid
               children: <Widget>[
                 Text(tabs.elementAt(tabBarIndicatorStore.index)),
                 TabBarIndicator(
-                    num: BigInt.from(2)
+                    num: BigInt.from(3)
                 )
               ],
             );
@@ -60,7 +62,8 @@ class _RepositoryPageState extends State<RepositoryPage> with SingleTickerProvid
             controller: _tabController,
             children: <Widget>[
               RepositoryByOwnerPage(),
-              TrendingRepositoryPage()
+              TrendingRepositoryPage(),
+              TrendingDeveloperPage()
             ],
           ),
         ),

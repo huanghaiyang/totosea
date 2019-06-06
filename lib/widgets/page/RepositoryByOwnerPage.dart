@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../service/query/repository.dart' show readRepositories;
-import './RepositoryListView.dart' show RepositoryListView;
-import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
+import 'package:totosea/service/query/repository.dart' show readRepositories;
+import 'package:totosea/widgets/listView/RepositoryListView.dart' show RepositoryListView;
+import 'package:totosea/widgets/share/RespositoryListViewShareDataWidget.dart'
+    show RespositoryListViewShareDataWidget;
 
 class RepositoryByOwnerPage extends StatefulWidget{
   @override

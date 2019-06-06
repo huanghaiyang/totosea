@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'iconfont.dart';
+import 'package:totosea/widgets/iconfont.dart';
 
-import '../lodash/index.dart' as _;
-import '../utils/color.dart' show hexToColor;
-import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
+import 'package:totosea/lodash/index.dart' as _;
+import 'package:totosea/utils/color.dart' show hexToColor;
+import 'package:totosea/widgets/share/RespositoryListViewShareDataWidget.dart'
+    show RespositoryListViewShareDataWidget;
 
 class RepositoryListView extends StatefulWidget{
   @override

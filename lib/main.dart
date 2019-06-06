@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import './graphql_flutter/link.dart' as graphql_flutter;
-import './widgets/MainPage.dart' show MainPage;
+import 'package:totosea/graphql_flutter/link.dart' as graphql_flutter;
+import 'package:totosea/widgets/page/MainPage.dart' show MainPage;
 
 void main() {
   ValueNotifier<GraphQLClient> client = graphql_flutter.link();

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../config/github.dart' as githubConfig;
+import 'package:totosea/config/github.dart' as githubConfig;
 
 ValueNotifier<GraphQLClient> client;
 GraphQLClient graphQLClient;
