@@ -9,6 +9,10 @@ import '../graphql_flutter/link.dart' show graphQLClient;
 import '../config/github.dart' show Apis;
 import '../service/query/trendingRepository.dart' show readTrendingRepositories;
 
+import '../store/RepositoryListViewStore.dart' show RepositoryListViewStore;
+
+final repositoryListViewStore = RepositoryListViewStore();
+
 Future<Map<String, String>> requestTrendingRepo() async {
   HttpClient client = new HttpClient();
   HttpClientRequest request = await client.getUrl(Uri.parse(Apis['trending']));
@@ -58,5 +62,27 @@ Future<List<Map>> transformQueryResult(Future<List<QueryResult>> list, String ke
     }
   });
   return listMap;
+}
+
+void fetchIncoming() async {
+  Map<String, String> repoMap = await requestTrendingRepo();
+  bool hasDataComing = false;
+  repoMap.forEach((owner, repoName) async{
+    QueryResult queryResult = await graphQLClient.query(QueryOptions(
+      document: readTrendingRepositories, // this is the query string you just created
+      variables: {
+        'owner': owner,
+        'name': repoName,
+      },
+      pollInterval: 10,
+    ));
+    if(!queryResult.hasErrors) {
+      if(!hasDataComing) {
+        repositoryListViewStore.clearAll();
+        hasDataComing = true;
+      }
+      repositoryListViewStore.concatOne(queryResult.data['repository']);
+    }
+  });
 }
 

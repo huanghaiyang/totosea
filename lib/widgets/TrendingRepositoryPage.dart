@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../github_trending/fetch.dart' show fetchTrendingRepo, transformQueryResult;
+import '../github_trending/fetch.dart' show fetchIncoming, repositoryListViewStore;
 import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
 import './RepositoryListView.dart' show RepositoryListView;
 
@@ -13,8 +14,6 @@ class TrendingRepositoryPage extends StatefulWidget{
 
 class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
 
-  List<Map> repositories = new List();
-
   @override
   void initState() {
     super.initState();
@@ -22,10 +21,7 @@ class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
   }
 
   fetch() async {
-    List<Object> list = await transformQueryResult(fetchTrendingRepo(), 'repository');
-    this.setState(() {
-      repositories = list;
-    });
+    fetchIncoming();
   }
 
   @override
@@ -34,12 +30,16 @@ class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
         appBar: AppBar(
           title: const Text('Trending Repositories'),
         ),
-        body: Center(
-          child: RespositoryListViewShareDataWidget(
-            data: repositories,
-            child: RepositoryListView(),
-          ),
-        ),
+        body: Observer(
+          builder: (_) {
+            List<Object> repositories = repositoryListViewStore.repositories;
+            return Center(
+              child: RespositoryListViewShareDataWidget(
+              data: repositories,
+              child: RepositoryListView(),
+            ),
+          );},
+        )
     );
   }
 }
