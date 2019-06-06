@@ -131,26 +131,35 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                         height: mentionableUsers.length ==0 ? 0: 25,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: mentionableUsers.length,
-                              itemBuilder: (context, mentionableUserIndex) {
-                              final mentionableUser = mentionableUsers.elementAt(mentionableUserIndex);
-                              return Container(
-                                  width: 20,
-                                  height: 20,
-                                  margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                          mentionableUser['avatarUrl']
-                                      ),
-                                    ),
-                                  )
-                              );
-                            }
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                child: Text('built by ', style: TextStyle(fontStyle: FontStyle.italic)),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: mentionableUsers.length,
+                                    itemBuilder: (context, mentionableUserIndex) {
+                                      final mentionableUser = mentionableUsers.elementAt(mentionableUserIndex);
+                                      return Container(
+                                          width: 20,
+                                          height: 20,
+                                          margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.rectangle,
+                                            borderRadius: BorderRadius.circular(6.0),
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                  mentionableUser['avatarUrl']
+                                              ),
+                                            ),
+                                          )
+                                      );
+                                    }
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       )
