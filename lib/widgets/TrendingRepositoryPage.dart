@@ -4,7 +4,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../github_trending/fetch.dart' show fetchIncoming, repositoryListViewStore;
 import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
 import './RepositoryListView.dart' show RepositoryListView;
-import './TabBarIndicator.dart' show TabBarIndicator;
 
 class TrendingRepositoryPage extends StatefulWidget{
   @override
@@ -28,17 +27,6 @@ class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Column(
-            children: <Widget>[
-              Text('Trending repositories'),
-              TabBarIndicator(
-                num: BigInt.from(2),
-                index: BigInt.from(1),
-              )
-            ],
-          ),
-        ),
         body: Observer(
           builder: (_) {
             int repositoriesLength = repositoryListViewStore.repositoriesLength;

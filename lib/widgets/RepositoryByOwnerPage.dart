@@ -4,7 +4,6 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import '../service/query/repository.dart' show readRepositories;
 import './RepositoryListView.dart' show RepositoryListView;
 import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
-import './TabBarIndicator.dart' show TabBarIndicator;
 
 class RepositoryByOwnerPage extends StatefulWidget{
   @override
@@ -18,17 +17,6 @@ class _RepositoryByOwnerPageState extends State<RepositoryByOwnerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Column(
-            children: <Widget>[
-              Text('Repositories'),
-              TabBarIndicator(
-                num: BigInt.from(2),
-                index: BigInt.from(0),
-              )
-            ],
-          ),
-        ),
         body: Center(
           child: Query(
             options: QueryOptions(
