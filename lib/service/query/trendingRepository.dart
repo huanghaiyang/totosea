@@ -26,14 +26,6 @@ String readTrendingRepositories = """
         stargazers(first: 10, orderBy: {field: STARRED_AT, direction: DESC}){
           totalCount,
         },
-        collaborators(first: 5) {
-          totalCount,
-          nodes {
-            avatarUrl,
-            id,
-            login,
-          },
-        }
         mentionableUsers(first: 5) {
           totalCount,
           nodes {

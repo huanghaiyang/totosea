@@ -26,6 +26,23 @@ mixin _$RepositoryListViewStore on _RepositoryListViewStore, Store {
     _$repositoriesAtom.reportChanged();
   }
 
+  final _$repositoriesLengthAtom =
+      Atom(name: '_RepositoryListViewStore.repositoriesLength');
+
+  @override
+  int get repositoriesLength {
+    _$repositoriesLengthAtom.reportObserved();
+    return super.repositoriesLength;
+  }
+
+  @override
+  set repositoriesLength(int value) {
+    _$repositoriesLengthAtom.context
+        .checkIfStateModificationsAreAllowed(_$repositoriesLengthAtom);
+    super.repositoriesLength = value;
+    _$repositoriesLengthAtom.reportChanged();
+  }
+
   final _$_RepositoryListViewStoreActionController =
       ActionController(name: '_RepositoryListViewStore');
 

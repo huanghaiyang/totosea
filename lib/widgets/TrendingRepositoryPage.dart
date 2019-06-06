@@ -32,13 +32,31 @@ class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
         ),
         body: Observer(
           builder: (_) {
+            int repositoriesLength = repositoryListViewStore.repositoriesLength;
             List<Object> repositories = repositoryListViewStore.repositories;
-            return Center(
-              child: RespositoryListViewShareDataWidget(
-              data: repositories,
-              child: RepositoryListView(),
-            ),
-          );},
+            return Column(
+              children: <Widget>[
+                Container(
+                  height: 30,
+                  padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'All ' + repositoriesLength.toString() + ' repositories',
+                        style: TextStyle(fontStyle: FontStyle.italic)
+                      ),
+                    ],
+                  )
+                ),
+                Expanded(
+                  child: RespositoryListViewShareDataWidget(
+                    data: repositories,
+                    child: RepositoryListView(),
+                  ),
+                )
+              ],
+            );
+          },
         )
     );
   }
