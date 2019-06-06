@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import './RepositoryPage.dart' show RepositoryPage;
-import './TrendingRepositoryPage.dart' show TrendingRepositoryPage;
 
 class MainPage extends StatefulWidget{
   MainPage({Key key}) : super(key: key);
@@ -15,7 +14,7 @@ class _MainPageState extends State<MainPage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     RepositoryPage(),
-    TrendingRepositoryPage(),
+    RepositoryPage(),
     RepositoryPage(),
   ];
 
@@ -35,7 +34,7 @@ class _MainPageState extends State<MainPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text('Repository'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.star),

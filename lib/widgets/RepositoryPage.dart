@@ -1,53 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../service/query/repository.dart' show readRepositories;
-import './RepositoryListView.dart' show RepositoryListView;
-import './RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
+import './RepositoryByOwnerPage.dart' show RepositoryByOwnerPage;
+import './TrendingRepositoryPage.dart' show TrendingRepositoryPage;
 
 class RepositoryPage extends StatefulWidget{
+
   @override
   _RepositoryPageState createState() => _RepositoryPageState();
 
   const RepositoryPage();
 }
 
-class _RepositoryPageState extends State<RepositoryPage> {
+class _RepositoryPageState extends State<RepositoryPage> with SingleTickerProviderStateMixin{
+
+  final List<Tab> tabs = <Tab>[
+    Tab(text: 'Repositories'),
+    Tab(text: 'TrendingRepositories'),
+  ];
+
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: tabs.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Repositories'),
-        ),
-        body: Center(
-          child: Query(
-            options: QueryOptions(
-              document: readRepositories, // this is the query string you just created
-              variables: {
-                'nRepositories': 10,
-              },
-              pollInterval: 10,
-            ),
-            // Just like in apollo refetch() could be used to manually trigger a refetch
-            builder: (QueryResult result, { VoidCallback refetch }) {
-              if (result.errors != null) {
-                return Text(result.errors.toString());
-              }
-
-              if (result.loading) {
-                return Text('Loading');
-              }
-
-              // it can be either Map or List
-              List<Object> repositories = result.data['viewer']['repositories']['nodes'];
-              return RespositoryListViewShareDataWidget(
-                data: repositories,
-                child: RepositoryListView(),
-              );
-            },
-          ),
-        ),
+    return DefaultTabController(
+      length: tabs.length,
+      child: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          RepositoryByOwnerPage(),
+          TrendingRepositoryPage()
+        ],
+      ),
     );
   }
+
 }
