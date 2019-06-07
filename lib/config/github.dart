@@ -8,5 +8,6 @@ final ApiV4 = const {
 };
 
 final Apis = const {
-  'trending': "https://github.com/trending"
+  'trending': "https://github.com/trending",
+  'trending_developers': "https://github.com/trending/developers",
 };

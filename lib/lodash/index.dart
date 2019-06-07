@@ -7,7 +7,13 @@ dynamic get(Map map, String propertyChain, Object defaultValue) {
     String property = properties.removeAt(0);
     if(property != null) {
       if(result != null) {
-        result = result[property];
+        if(result is Map) {
+          result = result[property];
+        }else if(result is List) {
+          if(property.startsWith(new RegExp('\\[')) && property.endsWith(']')) {
+            result = List.from(result).elementAt(int.parse(property.substring(1, property.length - 1)));
+          }
+        }
       }
     }
   }

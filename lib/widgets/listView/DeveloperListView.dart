@@ -40,6 +40,77 @@ class _DeveloperListViewState extends State<DeveloperListView> {
             child: new Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      width: 30.0,
+                      height: 30.0,
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(4.0),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              developer['avatarUrl']
+                          ),
+                        ),
+                      )
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(developer['login'], style: TextStyle(
+                              color: Colors.blueAccent
+                            ),),
+                            Text('('),
+                            Text(_.get(developer, 'name', _.get(developer, 'login', '')), style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold
+                            )),
+                            Text(')')
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              child: Icon(IconData(59493, fontFamily: 'MaterialIcons'), size: 14, color: Colors.teal),
+                              padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                            ),
+                            Expanded(
+                              child: Text(_.get(developer, 'repositories.nodes.[0].name', '')),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                child: Text(_.get(developer, 'repositories.nodes.[0].description', ''), style: TextStyle(fontSize: 12)),
+                                padding: EdgeInsets.fromLTRB(14, 0, 0, 0),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  flex: 8,
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('follow'),
+                  ),
+                  flex: 2,
+                )
               ],
             ),
           );
