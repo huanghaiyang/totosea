@@ -3,8 +3,8 @@ import 'package:totosea/widgets/iconfont.dart';
 
 import 'package:totosea/lodash/index.dart' as _;
 import 'package:totosea/utils/color.dart' show hexToColor;
-import 'package:totosea/widgets/share/RespositoryListViewShareDataWidget.dart'
-    show RespositoryListViewShareDataWidget;
+import 'package:totosea/widgets/share/RepositoryListViewShareDataWidget.dart'
+    show RepositoryListViewShareDataWidget;
 
 class RepositoryListView extends StatefulWidget{
   @override
@@ -24,7 +24,7 @@ class _RepositoryListViewState extends State<RepositoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    List<Object> repositories = RespositoryListViewShareDataWidget.of(context).data;
+    List<Object> repositories = RepositoryListViewShareDataWidget.of(context).data;
     return ListView.builder(
         itemCount: repositories.length,
         itemBuilder: (context, index) {

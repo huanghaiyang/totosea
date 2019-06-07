@@ -3,8 +3,8 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:totosea/service/query/repository.dart' show readRepositories;
 import 'package:totosea/widgets/listView/RepositoryListView.dart' show RepositoryListView;
-import 'package:totosea/widgets/share/RespositoryListViewShareDataWidget.dart'
-    show RespositoryListViewShareDataWidget;
+import 'package:totosea/widgets/share/RepositoryListViewShareDataWidget.dart'
+    show RepositoryListViewShareDataWidget;
 
 class RepositoryByOwnerPage extends StatefulWidget{
   @override
@@ -39,7 +39,7 @@ class _RepositoryByOwnerPageState extends State<RepositoryByOwnerPage> {
 
               // it can be either Map or List
               List<Object> repositories = result.data['viewer']['repositories']['nodes'];
-              return RespositoryListViewShareDataWidget(
+              return RepositoryListViewShareDataWidget(
                 data: repositories,
                 child: RepositoryListView(),
               );

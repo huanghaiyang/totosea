@@ -6,6 +6,10 @@ import 'package:totosea/config/github.dart' as githubConfig;
 ValueNotifier<GraphQLClient> client;
 GraphQLClient graphQLClient;
 
+Future<String> getToken() async {
+  return 'Bearer ' + githubConfig.Auth['token'];
+}
+
 ValueNotifier<GraphQLClient> link() {
   if(client == null) {
     final HttpLink httpLink = HttpLink(
@@ -13,7 +17,7 @@ ValueNotifier<GraphQLClient> link() {
     );
 
     final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer ' + githubConfig.Auth['token'],
+      getToken: getToken,
     );
 
     final Link link = authLink.concat(httpLink as Link);

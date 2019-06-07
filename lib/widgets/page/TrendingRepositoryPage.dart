@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:totosea/github_trending/fetch.dart' show fetchIncoming, repositoryListViewStore;
-import 'package:totosea/widgets/share/RespositoryListViewShareDataWidget.dart' show RespositoryListViewShareDataWidget;
+import 'package:totosea/widgets/share/RepositoryListViewShareDataWidget.dart'
+    show RepositoryListViewShareDataWidget;
 import 'package:totosea/widgets/listView/RepositoryListView.dart' show RepositoryListView;
 
 class TrendingRepositoryPage extends StatefulWidget{
@@ -46,7 +47,7 @@ class _TrendingRepositoryPageState extends State<TrendingRepositoryPage> {
                   )
                 ),
                 Expanded(
-                  child: RespositoryListViewShareDataWidget(
+                  child: RepositoryListViewShareDataWidget(
                     data: repositories,
                     child: RepositoryListView(),
                   ),

@@ -6,20 +6,25 @@ import 'package:html/dom.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:totosea/lodash/index.dart' as _;
-import 'package:totosea/graphql_flutter/link.dart' show graphQLClient;
+import 'package:totosea/graphql_flutter/link.dart' show graphQLClient, getToken;
 import 'package:totosea/config/github.dart' show Apis;
 import 'package:totosea/service/query/trendingRepository.dart' show readTrendingRepositories;
 import 'package:totosea/service/query/trendingDevelopers.dart' show readTrendingDevelopers;
 
 import 'package:totosea/store/RepositoryListViewStore.dart' show RepositoryListViewStore;
 import 'package:totosea/store/DeveloperListViewStore.dart' show DeveloperListViewStore;
+import 'package:totosea/store/TopicsListViewStore.dart' show TopicsListViewStore;
 
 final repositoryListViewStore = RepositoryListViewStore();
 final developerListViewStore = DeveloperListViewStore();
+final topicsListViewStore = TopicsListViewStore();
+
+final linkPattern = new RegExp("^pa-");
 
 Future<Document> requestDocument(String url) async {
   HttpClient client = new HttpClient();
   HttpClientRequest request = await client.getUrl(Uri.parse(url));
+  request.headers.set("Authorization", await getToken());
   HttpClientResponse response = await request.close();
   String html = await response.transform(utf8.decoder).join();
   Document document = parse(html);
@@ -34,7 +39,7 @@ Future<Map<String, String>> requestTrendingRepo() async {
   exploreContent.forEach((Element element){
     element.getElementsByClassName("repo-list").forEach((Element repoElement) {
       repoElement.children.forEach((Element repoChildElement) {
-        if(repoChildElement.attributes['id'].startsWith(new RegExp("^pa-"))) {
+        if(repoChildElement.attributes['id'].startsWith(linkPattern)) {
           List<String> names = repoChildElement.getElementsByTagName("a").first.attributes['href'].split(new RegExp("/"));
           if (names.first == "") {
             names.removeAt(0);
@@ -54,7 +59,7 @@ Future<List<String>> requestTrendingDevelopers() async {
   List<String> names = new List();
   exploreContent.forEach((Element element){
     element.getElementsByTagName("li").forEach((Element developerElement) {
-      if(developerElement.attributes['id'].startsWith(new RegExp("^pa-"))) {
+      if(developerElement.attributes['id'].startsWith(linkPattern)) {
         String href = developerElement.getElementsByTagName("a").first.attributes['href'];
         names.add(href.substring(4, href.length));
       }
@@ -63,16 +68,26 @@ Future<List<String>> requestTrendingDevelopers() async {
   return names;
 }
 
-// 查询仓库
-Future<QueryResult> queryTrendingRepository(String owner, String name) async {
+Future<List<Map<String, String>>> requestTopics() async {
+  Document document = await requestDocument(Apis['Topics']);
+  List<Map<String, String>> list = new List();
+  return list;
+}
+
+Future<QueryResult> queryRepository(String owner, String name, String graphql) async {
   return graphQLClient.query(QueryOptions(
-    document: readTrendingRepositories, // this is the query string you just created
+    document: graphql, // this is the query string you just created
     variables: {
       'owner': owner,
       'name': name,
     },
     pollInterval: 10,
   ));
+}
+
+// 查询仓库
+Future<QueryResult> queryTrendingRepository(String owner, String name) async {
+  return queryRepository(owner, name, readTrendingRepositories);
 }
 
 // 查询用户
@@ -138,5 +153,11 @@ void fetchIncomingDevelopers() async {
       developerListViewStore.concatOne(data);
     }
   });
+}
+
+void fetchIncomingTopics() async {
+  List<Map<String, String>> list = await requestTopics();
+  topicsListViewStore.clearAll();
+  topicsListViewStore.concat(list);
 }
 
