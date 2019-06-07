@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:totosea/widgets/iconfont.dart';
-
 import 'package:totosea/lodash/index.dart' as _;
-import 'package:totosea/utils/color.dart' show hexToColor;
 import 'package:totosea/widgets/share/DeveloperListViewShareDataWidget.dart'
     show DeveloperListViewShareDataWidget;
 
@@ -28,8 +25,8 @@ class _DeveloperListViewState extends State<DeveloperListView> {
     return ListView.builder(
         itemCount: developers.length,
         itemBuilder: (context, index) {
-          final developer = Map.from(developers[index]);
-          return new Container(
+          final developer = Map.from(_.get(developers, '[${index}]', new Map()));
+          return developer.isEmpty? new Container(): new Container(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             decoration: const BoxDecoration(
@@ -48,7 +45,7 @@ class _DeveloperListViewState extends State<DeveloperListView> {
                       margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(4.0),
+                        borderRadius: BorderRadius.circular(6.0),
                         image: DecorationImage(
                           image: NetworkImage(
                               developer['avatarUrl']
@@ -62,19 +59,23 @@ class _DeveloperListViewState extends State<DeveloperListView> {
                     padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Text(developer['login'], style: TextStyle(
-                              color: Colors.blueAccent
-                            ),),
-                            Text('('),
-                            Text(_.get(developer, 'name', _.get(developer, 'login', '')), style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold
-                            )),
-                            Text(')')
-                          ],
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Wrap(
+                            children: <Widget>[
+                              Text(developer['login'], style: TextStyle(
+                                  color: Colors.blueAccent
+                              ),),
+                              Text('('),
+                              Text(_.get(developer, 'name', _.get(developer, 'login', '')), style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+
+                              )),
+                              Text(')')
+                            ],
+                          ),
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
