@@ -1,13 +1,16 @@
-final Auth = const {
+const Auth = const {
   'token': ""
 };
 
-final ApiV4 = const {
+const ApiV4 = const {
   'host': "https://api.github.com",
   'path': "/graphql"
 };
 
-final Apis = const {
-  'trending': "https://github.com/trending",
-  'trending_developers': "https://github.com/trending/developers",
+const String github = "https://github.com";
+
+const Apis = const {
+  'trending': "$github/trending",
+  'trending_developers': "$github/trending/developers",
+  'discover': '$github/discover'
 };
