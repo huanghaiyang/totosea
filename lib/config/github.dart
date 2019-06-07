@@ -12,5 +12,5 @@ const String github = "https://github.com";
 const Apis = const {
   'trending': "$github/trending",
   'trending_developers': "$github/trending/developers",
-  'Topics': '$github/Topics'
+  'topics': '$github/topics'
 };

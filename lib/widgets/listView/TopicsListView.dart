@@ -41,7 +41,7 @@ class _TopicsListViewState extends State<TopicsListView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: Container(
+                  child: _.get(topic, 'avatarUrl', null) != null ? Container(
                       width: 30.0,
                       height: 30.0,
                       margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
@@ -50,15 +50,32 @@ class _TopicsListViewState extends State<TopicsListView> {
                         borderRadius: BorderRadius.circular(6.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              topic['owner']['avatarUrl']
+                              topic['avatarUrl']
                           ),
                         ),
                       )
+                  ): Container(
+                    child: Icon(IconData(57676, fontFamily: 'MaterialIcons'), color: Colors.deepOrangeAccent,),
                   ),
                   flex: 1,
                 ),
                 Expanded(
-                  child: Container(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                        child: Text(_.get(topic, 'name', ''), style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                        child: Text(_.get(topic, 'description', '')),
+                      )
+                    ],
+                  ),
                   flex: 10,
                 )
               ],

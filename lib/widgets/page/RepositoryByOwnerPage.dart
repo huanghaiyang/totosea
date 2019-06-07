@@ -39,9 +39,27 @@ class _RepositoryByOwnerPageState extends State<RepositoryByOwnerPage> {
 
               // it can be either Map or List
               List<Object> repositories = result.data['viewer']['repositories']['nodes'];
-              return RepositoryListViewShareDataWidget(
-                data: repositories,
-                child: RepositoryListView(),
+              return Column(
+                children: <Widget>[
+                  Container(
+                      height: 30,
+                      padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                              'All ' + repositories.length.toString() + ' repositories',
+                              style: TextStyle(fontStyle: FontStyle.italic)
+                          ),
+                        ],
+                      )
+                  ),
+                  Expanded(
+                    child: RepositoryListViewShareDataWidget(
+                      data: repositories,
+                      child: RepositoryListView(),
+                    ),
+                  )
+                ],
               );
             },
           ),

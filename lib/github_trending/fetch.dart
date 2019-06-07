@@ -6,7 +6,7 @@ import 'package:html/dom.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:totosea/lodash/index.dart' as _;
-import 'package:totosea/graphql_flutter/link.dart' show graphQLClient, getToken;
+import 'package:totosea/graphql_flutter/link.dart' show graphQLClient;
 import 'package:totosea/config/github.dart' show Apis;
 import 'package:totosea/service/query/trendingRepository.dart' show readTrendingRepositories;
 import 'package:totosea/service/query/trendingDevelopers.dart' show readTrendingDevelopers;
@@ -24,7 +24,6 @@ final linkPattern = new RegExp("^pa-");
 Future<Document> requestDocument(String url) async {
   HttpClient client = new HttpClient();
   HttpClientRequest request = await client.getUrl(Uri.parse(url));
-  request.headers.set("Authorization", await getToken());
   HttpClientResponse response = await request.close();
   String html = await response.transform(utf8.decoder).join();
   Document document = parse(html);
@@ -69,8 +68,29 @@ Future<List<String>> requestTrendingDevelopers() async {
 }
 
 Future<List<Map<String, String>>> requestTopics() async {
-  Document document = await requestDocument(Apis['Topics']);
   List<Map<String, String>> list = new List();
+  Document document = await requestDocument(Apis['topics']);
+  document.getElementsByTagName('a').forEach((link) {
+    if(link.attributes['href'].startsWith(new RegExp("\\/topics\\/"))) {
+
+      List<Element> nameElements = link.getElementsByClassName('lh-condensed');
+      Element nameElement = nameElements.isNotEmpty? nameElements.first: null;
+      if(nameElement != null) {
+        Map<String, String> map = new Map();
+        map['name'] = nameElement.text;
+        Element descriptionElement = nameElement.nextElementSibling;
+        if(descriptionElement != null) {
+          map['description'] = descriptionElement.text;
+        }
+        List<Element> imageElements = link.getElementsByTagName('img');
+        Element imageElement = imageElements.isNotEmpty? imageElements.first: null;
+        if(imageElement != null) {
+          map['avatarUrl'] = imageElement.attributes['src'];
+        }
+        list.add(map);
+      }
+    }
+  });
   return list;
 }
 
