@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import 'package:totosea/github_trending/fetch.dart' show fetchIncomingDevelopers, developerListViewStore;
+import 'package:totosea/github_fetch/fetch.dart' show fetchIncomingDevelopers, developerListViewStore;
 import 'package:totosea/widgets/share/DeveloperListViewShareDataWidget.dart'
     show DeveloperListViewShareDataWidget;
 import 'package:totosea/widgets/listView/DeveloperListView.dart' show DeveloperListView;

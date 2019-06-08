@@ -22,6 +22,10 @@ class _RepositoryListViewState extends State<RepositoryListView> {
     super.didChangeDependencies();
   }
 
+  navigateToDetail(BuildContext context, Map params) {
+    Navigator.of(context).pushNamed("repository_detail", arguments: params);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Object> repositories = RepositoryListViewShareDataWidget.of(context).data;
@@ -72,9 +76,18 @@ class _RepositoryListViewState extends State<RepositoryListView> {
                       ),
                       Container(
                         padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        child: Align(
-                          child: new Text(repository['description']),
-                          alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          onTap: () {
+                            this.navigateToDetail(context, {
+                              'id': repository['id'],
+                              'owner': repository['owner']['login'],
+                              'name': repository['name']
+                            });
+                          },
+                          child: Align(
+                            child: new Text(repository['description']),
+                            alignment: Alignment.centerLeft,
+                          ),
                         ),
                       ),
                       Container(

@@ -7,10 +7,6 @@ String readRepositories = """
           name,
           viewerHasStarred,
           description,
-          descriptionHTML,
-          resourcePath,
-          projectsResourcePath,
-          nameWithOwner,
           languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
             nodes {
               color,

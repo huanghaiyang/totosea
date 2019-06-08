@@ -94,9 +94,9 @@ Future<List<Map<String, String>>> requestTopics() async {
   return list;
 }
 
-Future<QueryResult> queryRepository(String owner, String name, String graphql) async {
+Future<QueryResult> queryRepository(String owner, String name, String graphQl) async {
   return graphQLClient.query(QueryOptions(
-    document: graphql, // this is the query string you just created
+    document: graphQl, // this is the query string you just created
     variables: {
       'owner': owner,
       'name': name,

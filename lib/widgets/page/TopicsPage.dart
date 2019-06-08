@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import 'package:totosea/github_trending/fetch.dart' show fetchIncomingTopics, topicsListViewStore;
+import 'package:totosea/github_fetch//fetch.dart' show fetchIncomingTopics, topicsListViewStore;
 import 'package:totosea/widgets/share/TopicsListViewShareDataWidget.dart'
     show TopicsListViewShareDataWidget;
 import 'package:totosea/widgets/listView/TopicsListView.dart' show TopicsListView;

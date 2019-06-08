@@ -4,6 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:totosea/graphql_flutter/link.dart' as graphql_flutter;
 import 'package:totosea/widgets/page/MainPage.dart' show MainPage;
+import 'package:totosea/widgets/page/RepositoryDetailPage.dart' show RepositoryDetailPage;
 
 void main() {
   ValueNotifier<GraphQLClient> client = graphql_flutter.link();
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
+            routes:{
+              "repository_detail": (context) => RepositoryDetailPage(),
+            },
             home: MyHomePage(title: 'Repositories'),
           )
       )
