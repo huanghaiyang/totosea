@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:totosea/lodash/index.dart' as _;
+import 'package:todash/todash.dart' as _;
 import 'package:totosea/widgets/share/DeveloperListViewShareDataWidget.dart'
     show DeveloperListViewShareDataWidget;
 

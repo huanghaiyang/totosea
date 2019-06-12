@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:totosea/widgets/iconfont.dart';
 
-import 'package:totosea/lodash/index.dart' as _;
+import 'package:todash/todash.dart' as _;
 import 'package:totosea/utils/color.dart' show hexToColor;
 import 'package:totosea/widgets/share/RepositoryListViewShareDataWidget.dart'
     show RepositoryListViewShareDataWidget;

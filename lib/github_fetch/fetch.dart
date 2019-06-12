@@ -5,7 +5,7 @@ import 'package:html/parser.dart' show parse;
 import 'package:html/dom.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'package:totosea/lodash/index.dart' as _;
+import 'package:todash/todash.dart' as _;
 import 'package:totosea/graphql_flutter/link.dart' show graphQLClient;
 import 'package:totosea/config/github.dart' show Apis;
 import 'package:totosea/service/query/trendingRepository.dart' show readTrendingRepositories;

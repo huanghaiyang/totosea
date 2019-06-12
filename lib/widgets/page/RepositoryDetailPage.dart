@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:totosea/lodash/index.dart' as _;
+import 'package:todash/todash.dart' as _;
 import 'package:totosea/service/action/repositoryFetch.dart' show repositoryDetailCollectionsStore, fetchRepository;
 
 class RepositoryDetailPage extends StatefulWidget{
