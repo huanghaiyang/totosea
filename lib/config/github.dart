@@ -1,4 +1,4 @@
-import 'package:totosea/config/provate.dart';
+import 'package:totosea/config/private.dart';
 
 const Auth = const {
   'token': PRIVATE_TOKEN
