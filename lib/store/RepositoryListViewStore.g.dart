@@ -14,14 +14,14 @@ mixin _$RepositoryListViewStore on _RepositoryListViewStore, Store {
 
   @override
   List<Object> get repositories {
+    _$repositoriesAtom.context.enforceReadPolicy(_$repositoriesAtom);
     _$repositoriesAtom.reportObserved();
     return super.repositories;
   }
 
   @override
   set repositories(List<Object> value) {
-    _$repositoriesAtom.context
-        .checkIfStateModificationsAreAllowed(_$repositoriesAtom);
+    _$repositoriesAtom.context.enforceWritePolicy(_$repositoriesAtom);
     super.repositories = value;
     _$repositoriesAtom.reportChanged();
   }
@@ -31,6 +31,8 @@ mixin _$RepositoryListViewStore on _RepositoryListViewStore, Store {
 
   @override
   int get repositoriesLength {
+    _$repositoriesLengthAtom.context
+        .enforceReadPolicy(_$repositoriesLengthAtom);
     _$repositoriesLengthAtom.reportObserved();
     return super.repositoriesLength;
   }
@@ -38,7 +40,7 @@ mixin _$RepositoryListViewStore on _RepositoryListViewStore, Store {
   @override
   set repositoriesLength(int value) {
     _$repositoriesLengthAtom.context
-        .checkIfStateModificationsAreAllowed(_$repositoriesLengthAtom);
+        .enforceWritePolicy(_$repositoriesLengthAtom);
     super.repositoriesLength = value;
     _$repositoriesLengthAtom.reportChanged();
   }

@@ -13,13 +13,14 @@ mixin _$TopicsListViewStore on _TopicsListViewStore, Store {
 
   @override
   List<Object> get topics {
+    _$topicsAtom.context.enforceReadPolicy(_$topicsAtom);
     _$topicsAtom.reportObserved();
     return super.topics;
   }
 
   @override
   set topics(List<Object> value) {
-    _$topicsAtom.context.checkIfStateModificationsAreAllowed(_$topicsAtom);
+    _$topicsAtom.context.enforceWritePolicy(_$topicsAtom);
     super.topics = value;
     _$topicsAtom.reportChanged();
   }
@@ -28,14 +29,14 @@ mixin _$TopicsListViewStore on _TopicsListViewStore, Store {
 
   @override
   int get topicsLength {
+    _$topicsLengthAtom.context.enforceReadPolicy(_$topicsLengthAtom);
     _$topicsLengthAtom.reportObserved();
     return super.topicsLength;
   }
 
   @override
   set topicsLength(int value) {
-    _$topicsLengthAtom.context
-        .checkIfStateModificationsAreAllowed(_$topicsLengthAtom);
+    _$topicsLengthAtom.context.enforceWritePolicy(_$topicsLengthAtom);
     super.topicsLength = value;
     _$topicsLengthAtom.reportChanged();
   }

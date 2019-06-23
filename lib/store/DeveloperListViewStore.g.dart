@@ -13,14 +13,14 @@ mixin _$DeveloperListViewStore on _DeveloperListViewStore, Store {
 
   @override
   List<Object> get developers {
+    _$developersAtom.context.enforceReadPolicy(_$developersAtom);
     _$developersAtom.reportObserved();
     return super.developers;
   }
 
   @override
   set developers(List<Object> value) {
-    _$developersAtom.context
-        .checkIfStateModificationsAreAllowed(_$developersAtom);
+    _$developersAtom.context.enforceWritePolicy(_$developersAtom);
     super.developers = value;
     _$developersAtom.reportChanged();
   }
@@ -30,14 +30,14 @@ mixin _$DeveloperListViewStore on _DeveloperListViewStore, Store {
 
   @override
   int get developersLength {
+    _$developersLengthAtom.context.enforceReadPolicy(_$developersLengthAtom);
     _$developersLengthAtom.reportObserved();
     return super.developersLength;
   }
 
   @override
   set developersLength(int value) {
-    _$developersLengthAtom.context
-        .checkIfStateModificationsAreAllowed(_$developersLengthAtom);
+    _$developersLengthAtom.context.enforceWritePolicy(_$developersLengthAtom);
     super.developersLength = value;
     _$developersLengthAtom.reportChanged();
   }

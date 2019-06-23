@@ -13,13 +13,14 @@ mixin _$TabBarIndicatorStore on _TabBarIndicatorStore, Store {
 
   @override
   int get index {
+    _$indexAtom.context.enforceReadPolicy(_$indexAtom);
     _$indexAtom.reportObserved();
     return super.index;
   }
 
   @override
   set index(int value) {
-    _$indexAtom.context.checkIfStateModificationsAreAllowed(_$indexAtom);
+    _$indexAtom.context.enforceWritePolicy(_$indexAtom);
     super.index = value;
     _$indexAtom.reportChanged();
   }

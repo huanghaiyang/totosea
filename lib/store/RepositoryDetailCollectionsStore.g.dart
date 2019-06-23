@@ -15,14 +15,14 @@ mixin _$RepositoryDetailCollectionsStore
 
   @override
   Map<String, Map> get repositoriesMap {
+    _$repositoriesMapAtom.context.enforceReadPolicy(_$repositoriesMapAtom);
     _$repositoriesMapAtom.reportObserved();
     return super.repositoriesMap;
   }
 
   @override
   set repositoriesMap(Map<String, Map> value) {
-    _$repositoriesMapAtom.context
-        .checkIfStateModificationsAreAllowed(_$repositoriesMapAtom);
+    _$repositoriesMapAtom.context.enforceWritePolicy(_$repositoriesMapAtom);
     super.repositoriesMap = value;
     _$repositoriesMapAtom.reportChanged();
   }
@@ -31,13 +31,14 @@ mixin _$RepositoryDetailCollectionsStore
 
   @override
   int get size {
+    _$sizeAtom.context.enforceReadPolicy(_$sizeAtom);
     _$sizeAtom.reportObserved();
     return super.size;
   }
 
   @override
   set size(int value) {
-    _$sizeAtom.context.checkIfStateModificationsAreAllowed(_$sizeAtom);
+    _$sizeAtom.context.enforceWritePolicy(_$sizeAtom);
     super.size = value;
     _$sizeAtom.reportChanged();
   }
