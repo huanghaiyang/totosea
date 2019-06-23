@@ -1,5 +1,7 @@
+import 'package:totosea/config/provate.dart';
+
 const Auth = const {
-  'token': "824e0ad6b3a667f049e2733041be359d416c17b7"
+  'token': PRIVATE_TOKEN
 };
 
 const ApiV4 = const {
