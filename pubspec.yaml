@@ -30,6 +30,8 @@ dependencies:
   flutter_mobx:
   todash:
     git: git://github.com/huanghaiyang/todash
+  curie:
+    git: git://github.com/huanghaiyang/curie
 
 dev_dependencies:
   flutter_test:

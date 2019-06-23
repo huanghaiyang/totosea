@@ -134,6 +134,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"
+  curie:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "28efd6e39dea05b1962b70974e9dd6e762ceb30c"
+      url: "git://github.com/huanghaiyang/curie"
+    source: git
+    version: "0.0.0"
   dart_style:
     dependency: transitive
     description:
