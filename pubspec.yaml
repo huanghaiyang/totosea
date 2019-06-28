@@ -32,6 +32,8 @@ dependencies:
     git: git://github.com/huanghaiyang/todash
   curie:
     git: git://github.com/huanghaiyang/curie
+  github_trending:
+    git: git://github.com/huanghaiyang/github-trending
 
 dev_dependencies:
   flutter_test:

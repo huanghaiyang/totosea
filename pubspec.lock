@@ -188,6 +188,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.18"
+  github_trending:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "0fecd675e2921d7c4de3d854c0d24269d7d9069a"
+      url: "git://github.com/huanghaiyang/github-trending"
+    source: git
+    version: "0.0.0"
   glob:
     dependency: transitive
     description:
@@ -527,3 +536,4 @@ packages:
 sdks:
   dart: ">=2.3.0-dev.0.1 <3.0.0"
   flutter: ">=0.1.4 <2.0.0"
+  html: ">=0.14.0+2 <0.15.0"
