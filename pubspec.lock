@@ -7,7 +7,7 @@ packages:
       name: analyzer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.36.3"
+    version: "0.36.4"
   args:
     dependency: transitive
     description:
@@ -63,7 +63,7 @@ packages:
       name: build_runner
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.6.0"
+    version: "1.6.1"
   build_runner_core:
     dependency: transitive
     description:
@@ -139,7 +139,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "28efd6e39dea05b1962b70974e9dd6e762ceb30c"
+      resolved-ref: "788c9e4bcf71de115f5fb873fb845458d3aeb536"
       url: "git://github.com/huanghaiyang/curie"
     source: git
     version: "0.0.0"
@@ -187,7 +187,7 @@ packages:
       name: front_end
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.18"
+    version: "0.1.19"
   github_trending:
     dependency: "direct main"
     description:
@@ -287,7 +287,7 @@ packages:
       name: kernel
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.18"
+    version: "0.3.19"
   logging:
     dependency: transitive
     description:
@@ -322,14 +322,14 @@ packages:
       name: mobx
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.0+2"
+    version: "0.3.3"
   mobx_codegen:
     dependency: "direct dev"
     description:
       name: mobx_codegen
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.0+1"
+    version: "0.3.3"
   package_config:
     dependency: transitive
     description:
